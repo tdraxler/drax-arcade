@@ -8,7 +8,7 @@
     "build": "webpack"
   },
   "author": "Thomas Draxler",
-  "license": "ISC",
+  "license": "mit",
   "dependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.2.2",
