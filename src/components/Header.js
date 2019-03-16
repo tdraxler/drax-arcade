@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from 'react-bootstrap/Card';
+import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 
 class Header extends React.Component {
   constructor(props) {
@@ -8,15 +8,18 @@ class Header extends React.Component {
 
   render() {
     return (
-      <Card>
-        <Card.Body>
-          <Card.Title>This is a Title</Card.Title>
-          <Card.Subtitle className="mb-2 text-muted">Hello there</Card.Subtitle>
-          <Card.Text>
-            Here is some text for the user to see. It's not very interesting yet.
-          </Card.Text>
-        </Card.Body>
-      </Card>
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <Navbar.Brand href="#home">Drax Arcade</Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="mr-auto">
+            <Nav.Link href="#features">Games</Nav.Link>
+          </Nav>
+          <Nav>
+            <Nav.Link href="#deets">Sign Up</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
     );
   }
 }
