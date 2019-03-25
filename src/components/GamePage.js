@@ -1,10 +1,10 @@
 import React from 'react';
-import WelcomeBox from './WelcomeBox';
+import Placeholder from './Placeholder';
 import SideNav from './SideNav';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
-export const MainPage = () => {
+export const GamePage = () => {
   return (
     <div className="arcade-container">
       <Row>
@@ -12,7 +12,7 @@ export const MainPage = () => {
           <SideNav />
         </Col>
         <Col sm={10}>
-          <WelcomeBox />
+          <Placeholder />
         </Col>
       </Row>
     </div>
