@@ -1,3 +1,6 @@
 node_modules
 bundle.js
+mainPage.js
+gameIndex.js
+gameView.js
 .DS_Store

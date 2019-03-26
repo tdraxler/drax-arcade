@@ -4,8 +4,9 @@
   "description": "A simple CRUD app that allows users to play some games.",
   "main": "server.js",
   "scripts": {
-    "start": "node public/server.js",
-    "build": "webpack"
+    "start": "node server.js",
+    "build": "webpack",
+    "dev": ""
   },
   "author": "Thomas Draxler",
   "license": "mit",

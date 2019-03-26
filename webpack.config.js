@@ -3,10 +3,13 @@ const outPath = path.join(__dirname, 'public');
 
 module.exports = {
     //Where does webpack start? here
-    entry: "./src/app.js",
+    entry: {
+        mainPage: "./src/app.js",
+        gameIndex: "./src/gameindex.js"
+    },
     output: {
         path: outPath,
-        filename: "bundle.js"
+        filename: "[name].js"
     },
     //Using development mode for now until things are more complete
     mode: "development",
