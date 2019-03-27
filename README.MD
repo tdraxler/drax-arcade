@@ -13,4 +13,5 @@ Credit:
 1. https://medium.com/@faizanv/authentication-for-your-react-and-express-application-w-json-web-tokens-923515826e0
 I used that to help me set up the authentication system.
 
-2.
+2. https://blog.logrocket.com/setting-up-a-restful-api-with-node-js-and-postgresql-d96d6fc892d8
+This was for helping me set up a database server with PostgreSQL and incorporating it into Node/Express.
