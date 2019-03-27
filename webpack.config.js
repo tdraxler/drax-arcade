@@ -6,7 +6,7 @@ module.exports = {
     entry: {
         mainPage: "./src/app.js",
         gameIndex: "./src/gameindex.js",
-        gameView: "./src/gameview.js"
+        gameView: "./src/game.js"
     },
     output: {
         path: outPath,
