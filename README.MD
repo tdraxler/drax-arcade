@@ -8,3 +8,9 @@ Babel: I've found ES6 (and beyond) features to be very helpful and convenient wi
 React: Great for making web apps and working with the DOM.
 PostgreSQL:
 Bootstrap: 
+
+Credit:
+1. https://medium.com/@faizanv/authentication-for-your-react-and-express-application-w-json-web-tokens-923515826e0
+I used that to help me set up the authentication system.
+
+2.

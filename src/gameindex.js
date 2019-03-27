@@ -13,6 +13,7 @@ const AppGateway = () => {
     <div>
       <Header />
       <h1>Nothing here yet.</h1>
+      <a href="/">Go back</a>
       <Footer />
     </div>
   );

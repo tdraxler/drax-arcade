@@ -5,7 +5,8 @@ module.exports = {
     //Where does webpack start? here
     entry: {
         mainPage: "./src/app.js",
-        gameIndex: "./src/gameindex.js"
+        gameIndex: "./src/gameindex.js",
+        gameView: "./src/gameview.js"
     },
     output: {
         path: outPath,
