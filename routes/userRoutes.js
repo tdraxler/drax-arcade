@@ -21,10 +21,10 @@ router.get('/testdb', (req, res) => {
 
 router.post('/createUser', (req, res) => {
     console.log(req.body);
-    const { name, password } = req.body;
+    const { username, password } = req.body;
 
     const saltRounds = 10;
-    console.log(name + ", " + password);
+    console.log(username + ", " + password);
 
     bcrypt.hash(password, saltRounds, (err, hashedPassword) => {
         if (err) {
@@ -35,7 +35,7 @@ router.post('/createUser', (req, res) => {
         else {
             pool.query(
                 'INSERT INTO users (username, password) VALUES ($1, $2)', 
-                [name, hashedPassword], 
+                [username, hashedPassword], 
                 (error, results) => {
                     if (error) {
                         res.status(500).send("Couldn't sign up this user");
@@ -47,5 +47,10 @@ router.post('/createUser', (req, res) => {
                 });
         }
     });
+});
+
+router.post('/login', (req, res) => {
+    const { username, password } = req.body;
+
 });
 module.exports = router;

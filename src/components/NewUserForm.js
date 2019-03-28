@@ -29,7 +29,7 @@ class NewUserForm extends React.Component {
     fetch('/createUser', {
       method: 'POST',
       body: JSON.stringify({
-        name: input.username,
+        username: input.username,
         password: input.password
       }),
       headers: {
