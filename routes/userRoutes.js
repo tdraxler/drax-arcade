@@ -20,4 +20,10 @@ router.post('/createUser', (req, res) => {
         });
 });
 
+// POST: login
+
+// POST: logout
+
+// GET: userinfo
+
 module.exports = router;
