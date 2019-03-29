@@ -3,27 +3,12 @@ import Alert from 'react-bootstrap/Alert'
 import Button from 'react-bootstrap/Button'
 import React from 'react';
 
-const PasswordMatchMessage = (props) => {
-  const { password, passwordB } = props;
-  let visible = password != passwordB && passwordB.length > 0;
-  console.log(password + ", " + passwordB + ", " + visible);
-  return (
-      visible ? 
-      <Alert variant='danger'>
-        Passwords must match
-      </Alert>
-      :
-      <div></div>
-  );
-}
-
-class NewUserForm extends React.Component {
+class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       username: '',
       password: '',
-      passwordB: ''
     }
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -40,12 +25,11 @@ class NewUserForm extends React.Component {
     var input = this.state;
     console.log(JSON.stringify(input));
     event.preventDefault();
-    fetch('/createUser', {
+    fetch('/login', {
       method: 'POST',
       body: JSON.stringify({
         username: input.username,
-        password: input.password,
-        password: input.passwordB
+        password: input.password
       }),
       headers: {
         'Content-Type': 'application/json'
@@ -65,6 +49,7 @@ class NewUserForm extends React.Component {
   render() {
     return (
       <div>
+        <h3>Log in by entering your credentials below.</h3>
         <Form
           onSubmit={e => this.handleSubmit(e)}
         >
@@ -88,17 +73,6 @@ class NewUserForm extends React.Component {
               onChange={this.handleInputChange}
             />
           </Form.Group>
-          <Form.Group controlId="formBasicPassword">
-            <Form.Label>Confirm your password</Form.Label>
-            <Form.Control 
-              name="passwordB"
-              type="password" 
-              placeholder="Password" 
-              value={this.state.passwordB}
-              onChange={this.handleInputChange}
-            />
-          </Form.Group>
-          <PasswordMatchMessage password={this.state.password} passwordB={this.state.passwordB}/>
           <Button variant="primary" type="submit">
             Submit
           </Button>
@@ -108,4 +82,4 @@ class NewUserForm extends React.Component {
   }
 }
 
-export default NewUserForm;
+export default LoginForm;
