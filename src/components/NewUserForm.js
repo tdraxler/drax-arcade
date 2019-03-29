@@ -8,6 +8,7 @@ class NewUserForm extends React.Component {
     this.state = {
       username: '',
       password: '',
+      passwordB: ''
     }
 
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
@@ -20,6 +21,9 @@ class NewUserForm extends React.Component {
   
   handlePasswordChange(event) {
     this.setState({password: event.target.value});
+  }
+  handlePasswordChange(event) {
+    this.setState({passwordB: event.target.value});
   }
 
   handleSubmit(event) {
@@ -71,6 +75,15 @@ class NewUserForm extends React.Component {
               placeholder="Password" 
               value={this.state.password}
               onChange={this.handlePasswordChange}
+            />
+          </Form.Group>
+          <Form.Group controlId="formBasicPassword">
+            <Form.Label>Confirm your password</Form.Label>
+            <Form.Control 
+              type="password" 
+              placeholder="Password" 
+              value={this.state.passwordB}
+              onChange={this.handlePasswordBChange}
             />
           </Form.Group>
           <Button variant="primary" type="submit">
