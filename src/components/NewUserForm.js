@@ -56,7 +56,7 @@ class NewUserForm extends React.Component {
           onSubmit={e => this.handleSubmit(e)}
         >
           <Form.Group controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
+            <Form.Label>Username</Form.Label>
             <Form.Control
               type="text" placeholder="Enter username"
               value={this.state.username}
