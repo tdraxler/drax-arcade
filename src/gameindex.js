@@ -13,6 +13,14 @@ import Footer from './components/Footer';
 
 console.log("The app is running...");
 
+const EmptyComponent = (props) => {
+  return (
+    <div>
+      <h5>Hi anonymous user!</h5>
+    </div>
+  );
+}
+
 const AppGateway = () => {
   return (
     <div>
@@ -27,6 +35,7 @@ const AppGateway = () => {
             <li><Link to="/secret">Secret thing only registered users can see</Link></li>
           </ul>
           <Switch>
+            <Route path="/" exact component={EmptyComponent}/>
             <Route path="/login" exact component={LoginForm}/>
             <Route path="/register" component={NewUserForm}/>
             <Route path="/secret" component={SecretDisplay}/>

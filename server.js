@@ -1,6 +1,7 @@
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 const app = express(),
 	PUBLIC_DIR = path.join(__dirname, "/public"),
@@ -8,12 +9,14 @@ const app = express(),
     GAME_INDEX = path.join(PUBLIC_DIR, '/gameindex.html'),
     GAME_VIEW = path.join(PUBLIC_DIR, '/gameview.html')
 
+
 app.use(express.static(PUBLIC_DIR));
 app.use(
     bodyParser.urlencoded({
         extended: true,
     })
 );
+app.use(cookieParser());
 
 const userRoutes = require('./routes/userRoutes');
 
@@ -22,10 +25,12 @@ app.get('/', (req, res) => {
 });
 
 app.get('/games', (req, res) => {
+    console.log("Request for games");
     res.sendFile(GAME_INDEX);
 });
 
 app.get('/gameview', (req, res) => {
+    console.log("Request for game view");
     res.sendFile(GAME_VIEW);
 });
 

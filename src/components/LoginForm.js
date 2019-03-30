@@ -23,7 +23,6 @@ class LoginForm extends React.Component {
 
   handleSubmit(event) {
     var input = this.state;
-    console.log(JSON.stringify(input));
     event.preventDefault();
     fetch('/login', {
       method: 'POST',
@@ -37,13 +36,17 @@ class LoginForm extends React.Component {
     })
     .then(res => {
       if (res.status === 200) {
-        console.log("It worked.");
+        this.props.history.push('/');
       } else {
         console.log(res);
         const error = new Error(res.error);
-        console.log(error);
+        throw error;
       }
     })
+    .catch(err => {
+      console.error(err);
+      alert("Couldn't log you in for some reason.");
+    });
   }
 
   render() {

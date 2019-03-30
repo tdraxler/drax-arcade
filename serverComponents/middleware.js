@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const secret = require('../tokeninfo');
 
 const withAuth = (req, res, next) => {
+  console.log("Checking credentials of a user...");
   const token =
     req.body.token ||
     req.query.token ||
@@ -23,7 +24,6 @@ const withAuth = (req, res, next) => {
       }
     });
   }
-
 };
 
 module.exports = withAuth;

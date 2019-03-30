@@ -3,7 +3,8 @@ const User = require('../models/User'),
       express = require('express'),
       router = express.Router(),
       secret = require('../tokeninfo'),
-      jwt = require('jsonwebtoken');
+      jwt = require('jsonwebtoken'),
+      withAuth = require('../serverComponents/middleware');
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
@@ -25,7 +26,12 @@ router.post('/createUser', (req, res) => {
   if (password === passwordB && username.length <= 30) {
     User.create(req.body)
     .then(user => {
-      res.status(200).send("Successfully added this user to the database.");
+      const payload = { username };
+      const token = jwt.sign(payload, secret, {
+        expiresIn: '2h'
+      });
+      res.cookie('token', token, { httpOnly: true }).sendStatus(200);
+      //res.status(200).send("Successfully added this user to the database.");
     }).catch(err => {
       console.log(err);
     });
@@ -63,6 +69,10 @@ router.post('/login', (req, res) => {
   }).catch(err => {
     console.log(err);
   });
+});
+
+router.get('/checkToken', withAuth, (req, res) => {
+  res.sendStatus(200);
 });
 
 // POST: logout
