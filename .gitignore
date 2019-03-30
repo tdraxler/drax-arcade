@@ -5,4 +5,5 @@ gameIndex.js
 gameView.js
 databaseinfo.js
 tokeninfo.js
+sessioninfo.js
 .DS_Store

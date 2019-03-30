@@ -2,9 +2,9 @@ const User = require('../models/User'),
       bodyParser = require('body-parser'),
       express = require('express'),
       router = express.Router(),
-      secret = require('../tokeninfo'),
-      jwt = require('jsonwebtoken'),
-      withAuth = require('../serverComponents/middleware');
+      // secret = require('../tokeninfo'),
+      // jwt = require('jsonwebtoken'),
+      { isLoggedIn, checkAuth } = require('../serverComponents/middleware');
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
@@ -24,19 +24,24 @@ router.post('/createUser', (req, res) => {
   //Check to make sure the password is in a valid format
 
   if (password === passwordB && username.length <= 30) {
+    //Need to check if the user exists already...
     User.create(req.body)
     .then(user => {
-      const payload = { username };
-      const token = jwt.sign(payload, secret, {
-        expiresIn: '2h'
-      });
-      res.cookie('token', token, { httpOnly: true }).sendStatus(200);
+      req.session.user = user.dataValues;
+      res.sendStatus(200);
+      // const payload = { username };
+      // const token = jwt.sign(payload, secret, {
+      //   expiresIn: '2h'
+      // });
+      // res.cookie('token', token, { httpOnly: true }).sendStatus(200);
       //res.status(200).send("Successfully added this user to the database.");
     }).catch(err => {
-      console.log(err);
+      res.sendStatus(403);
     });
   }
-  //Check to see if that user already exists
+  else {
+    res.sendStatus(403);
+  }
 
 
 });
@@ -51,31 +56,46 @@ router.post('/login', (req, res) => {
   }).then(user => {
     if (!user) {
       console.log("No user found, I guess");
-    } else {
+      res.sendStatus(401);
+    } 
+    else if (!user.validPassword(password)) {
+      console.log("Wrong password");
+      res.sendStatus(401);
+    }
+    else {
       //Grant a token
-      if (user.validPassword(password)) { 
-        const payload = { username };
-        const token = jwt.sign(payload, secret, {
-          expiresIn: '2h'
-        });
-        res.cookie('token', token, { httpOnly: true }).sendStatus(200);
-      } else {
-        res.status(401)
-          .json({
-            error: 'Couldn\'t log in'
-          })
-      }
+      // if (user.validPassword(password)) { 
+      //   const payload = { username };
+      //   const token = jwt.sign(payload, secret, {
+      //     expiresIn: '2h'
+      //   });
+      //   res.cookie('token', token, { httpOnly: true }).sendStatus(200);
+      // } else {
+      //   res.status(401)
+      //     .json({
+      //       error: 'Couldn\'t log in'
+      //     })
+      // }
+      req.session.user = user.dataValues;
+      res.sendStatus(200);
     }
   }).catch(err => {
     console.log(err);
+    res.sendStatus(403);
   });
 });
 
-router.get('/checkToken', withAuth, (req, res) => {
+router.get('/checkAuth', checkAuth, (req, res) => {
   res.sendStatus(200);
 });
 
-// POST: logout
+// GET: logout
+router.get('/logout', (req, res) => {
+  if (isLoggedIn(req)) {
+    req.clearCookie('user_sid');
+  }
+  res.sendStatus(200);
+});
 
 // GET: userinfo
 

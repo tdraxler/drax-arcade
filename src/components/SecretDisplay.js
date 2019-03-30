@@ -11,7 +11,7 @@ export class SecretDisplay extends React.Component {
   }
 
   componentDidMount() {
-    fetch('/checkToken')
+    fetch('/checkAuth')
       .then(res => {
         if (res.status === 200) {
           this.setState({ loading: false });
