@@ -7,19 +7,12 @@ import { Link, Route, Switch, BrowserRouter } from 'react-router-dom';
 import LoginForm from './components/LoginForm';
 import NewUserForm from './components/NewUserForm';
 import SecretDisplay from './components/SecretDisplay';
+import ShowUserInfoTest from './components/ShowUserInfoTest';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
 
 console.log("The app is running...");
-
-const EmptyComponent = (props) => {
-  return (
-    <div>
-      <h5>Hi anonymous user!</h5>
-    </div>
-  );
-}
 
 const AppGateway = () => {
   return (
@@ -30,12 +23,13 @@ const AppGateway = () => {
         <h4>Choose a link below</h4>
         <BrowserRouter>
           <ul>
+            <li><Link to="/">Dash</Link></li>
             <li><Link to="/login">Log in</Link></li>
             <li><Link to="/register">Register</Link></li>
             <li><Link to="/secret">Secret thing only registered users can see</Link></li>
           </ul>
           <Switch>
-            <Route path="/" exact component={EmptyComponent}/>
+            <Route path="/" exact component={ShowUserInfoTest}/>
             <Route path="/login" exact component={LoginForm}/>
             <Route path="/register" component={NewUserForm}/>
             <Route path="/secret" component={SecretDisplay}/>

@@ -29,12 +29,6 @@ router.post('/createUser', (req, res) => {
     .then(user => {
       req.session.user = user.dataValues;
       res.sendStatus(200);
-      // const payload = { username };
-      // const token = jwt.sign(payload, secret, {
-      //   expiresIn: '2h'
-      // });
-      // res.cookie('token', token, { httpOnly: true }).sendStatus(200);
-      //res.status(200).send("Successfully added this user to the database.");
     }).catch(err => {
       res.sendStatus(403);
     });
@@ -63,19 +57,6 @@ router.post('/login', (req, res) => {
       res.sendStatus(401);
     }
     else {
-      //Grant a token
-      // if (user.validPassword(password)) { 
-      //   const payload = { username };
-      //   const token = jwt.sign(payload, secret, {
-      //     expiresIn: '2h'
-      //   });
-      //   res.cookie('token', token, { httpOnly: true }).sendStatus(200);
-      // } else {
-      //   res.status(401)
-      //     .json({
-      //       error: 'Couldn\'t log in'
-      //     })
-      // }
       req.session.user = user.dataValues;
       res.sendStatus(200);
     }
@@ -98,5 +79,14 @@ router.get('/logout', (req, res) => {
 });
 
 // GET: userinfo
+router.get('/userInfo', (req, res) => {
+  if (!isLoggedIn(req)) {
+    res.status(200).send({username: ''});
+  } else {
+    res.status(200).send({
+      username: req.session.user.username
+    });
+  }
+});
 
 module.exports = router;
