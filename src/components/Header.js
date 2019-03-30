@@ -9,11 +9,11 @@ class Header extends React.Component {
   render() {
     return (
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-        <Navbar.Brand href="#home">Drax Arcade</Navbar.Brand>
+        <Navbar.Brand href="/">Drax Arcade</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="#features">Games</Nav.Link>
+            <Nav.Link href="/games">Games</Nav.Link>
           </Nav>
           <Nav>
             <Nav.Link href="#deets">Sign Up</Nav.Link>
