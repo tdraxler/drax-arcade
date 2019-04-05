@@ -45,7 +45,7 @@ class NewUserForm extends React.Component {
       body: JSON.stringify({
         username: input.username,
         password: input.password,
-        password: input.passwordB
+        passwordB: input.passwordB
       }),
       headers: {
         'Content-Type': 'application/json'

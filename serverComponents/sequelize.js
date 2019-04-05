@@ -2,6 +2,8 @@ const Sequelize = require('sequelize');
 
 const databaseInfo = require('../databaseinfo.js');
 
+console.log(databaseInfo);
+
 const sequelize = new Sequelize(databaseInfo.database, databaseInfo.user, databaseInfo.password, {
     host: databaseInfo.host,
     dialect: 'postgres',

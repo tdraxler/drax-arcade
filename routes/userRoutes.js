@@ -30,6 +30,7 @@ router.post('/createUser', (req, res) => {
       req.session.user = user.dataValues;
       res.sendStatus(200);
     }).catch(err => {
+      console.log(err);
       res.sendStatus(403);
     });
   }
