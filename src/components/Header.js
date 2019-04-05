@@ -13,14 +13,10 @@ class Header extends React.Component {
     let userStatus;
 
     if (this.state.loggedIn) {
-      userStatus = <span>
-        <Nav>
-          <Nav.Link href="/">Welcome back, Thomas</Nav.Link>
-        </Nav>
+      userStatus =
         <Nav>
           <Nav.Link href="/">Log Out</Nav.Link>
-        </Nav>
-      </span>
+        </Nav>;
     } else {
       userStatus = <Nav><Nav.Link href="/">Register or Log In</Nav.Link></Nav>;
     }
