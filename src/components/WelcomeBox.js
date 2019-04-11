@@ -23,22 +23,24 @@ export class WelcomeBox extends React.Component {
     if (this.state.showRegWidget) {
       regDisplay = <AuthenticationWidget />;
     } else {
-      regDisplay = <div>
-        <Button onClick={e => this.onButtonClick(e)} variant="primary">Register</Button>
-      </div>;
+      regDisplay = 
+        <div className="one-line">
+          <Button className="small-padding" onClick={e => this.onButtonClick(e)} variant="primary">Register</Button>
+          <Button className="small-padding" variant="outline-primary">Log In</Button>
+        </div>;
     }   
 
     return (
       <div className="welcome-box">
         <Jumbotron>
-        <h1>Welcome</h1>
-        <p>
-          Come play some games in your browser. Register to rate games, post comments, 
-          and show your high scores to the world.
-        </p>
-        <a href="/games">Click here for the games listing</a>
-        {regDisplay}
-      </Jumbotron>
+          <h1>Welcome</h1>
+          <p>
+            Come play some games in your browser. Register to rate games, post comments, 
+            and show your high scores to the world.
+          </p>
+          <a href="/games">Click here to see what games we have!</a>
+          {regDisplay}
+        </Jumbotron>
       </div>
     );
   }

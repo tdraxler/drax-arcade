@@ -6,7 +6,6 @@ import Button from 'react-bootstrap/Button';
 const PasswordMatchMessage = (props) => {
   const { password, passwordB } = props;
   let visible = password != passwordB && passwordB.length > 0;
-  console.log(password + ", " + passwordB + ", " + visible);
   return (
       visible ? 
       <Alert variant='danger'>
@@ -24,7 +23,8 @@ export class AuthenticationWidget extends React.Component {
       mode: 'login',
       username: '',
       password: '',
-      passwordB: ''
+      passwordB: '',
+      newUser: true
     };
   }
 
@@ -39,10 +39,17 @@ export class AuthenticationWidget extends React.Component {
 
   }
 
+  switchView() {
+    let currentView = this.state.newUser;
+    this.setState({
+      newUser: !currentView
+    });
+  }
+
   drawLogin() {
     return (
-      <div>
-        <h3>Log in by entering your credentials below.</h3>
+      <div className="reg-widget">
+        <h4>Log in by entering your credentials below.</h4>
         <Form
           onSubmit={e => this.handleSubmit(e)}
         >
@@ -70,13 +77,18 @@ export class AuthenticationWidget extends React.Component {
             Submit
           </Button>
         </Form>
+        <div className="small-gap"></div>
+        <div className="one-line">
+            <p>Don't have an account? Click here: </p>
+            <Button size="sm" variant="secondary" onClick={() => this.switchView()}>Log In</Button>
+        </div>
       </div>
     );
   }
 
   drawRegister() {
     return (
-      <div>
+      <div className="reg-widget">
         <h4>Register by entering your information below.</h4>
         <Form
           onSubmit={e => this.handleSubmit(e)}
@@ -116,14 +128,19 @@ export class AuthenticationWidget extends React.Component {
             Submit
           </Button>
         </Form>
+        <div className="small-gap"></div>
+        <div className="one-line">
+            <p>Already a member? Click here:</p>
+            <Button variant="secondary" size="sm" onClick={() => this.switchView()}>Log In</Button>
+        </div>
       </div>
     );
   }
 
   giveWidget() {
-    //Checks for login state and returns the appropriate component
-    //TODO: Add ways to check for login status
-    return this.drawRegister();
+    if (this.state.newUser) return this.drawRegister();
+    else return this.drawLogin();
+
   }
 
   render() {
