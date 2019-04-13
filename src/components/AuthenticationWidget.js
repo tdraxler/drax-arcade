@@ -28,6 +28,12 @@ export class AuthenticationWidget extends React.Component {
     };
   }
 
+  componentWillMount() {
+    this.setState({
+      newUser: this.props.setting
+    });
+  }
+
   handleInputChange(event) {
     const {value, name } = event.target;
     this.setState({
@@ -80,7 +86,7 @@ export class AuthenticationWidget extends React.Component {
         <div className="small-gap"></div>
         <div className="one-line">
             <p>Don't have an account? Click here: </p>
-            <Button size="sm" variant="secondary" onClick={() => this.switchView()}>Log In</Button>
+            <Button size="sm" variant="secondary" className="super-small" onClick={() => this.switchView()}>Register</Button>
         </div>
       </div>
     );
@@ -131,7 +137,7 @@ export class AuthenticationWidget extends React.Component {
         <div className="small-gap"></div>
         <div className="one-line">
             <p>Already a member? Click here:</p>
-            <Button variant="secondary" size="sm" onClick={() => this.switchView()}>Log In</Button>
+            <Button variant="secondary" size="sm" className="super-small" onClick={() => this.switchView()}>Log In</Button>
         </div>
       </div>
     );

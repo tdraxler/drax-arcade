@@ -8,25 +8,29 @@ export class WelcomeBox extends React.Component {
     super(props);
     this.state = {
       loggedIn: false,
-      showRegWidget: false
+      showRegWidget: false,
+      newUser: false
     }
   }
 
-  onButtonClick(e) {
+  onButtonClick(userIsNew) {
     let opposite = !this.state.showRegWidget;
-    this.setState({showRegWidget: opposite});
+    this.setState({
+      showRegWidget: opposite,
+      newUser: userIsNew
+    });
   }
   
   render() {
     let regDisplay;
 
     if (this.state.showRegWidget) {
-      regDisplay = <AuthenticationWidget />;
+      regDisplay = <AuthenticationWidget setting={this.state.newUser}/>;
     } else {
       regDisplay = 
         <div className="one-line">
-          <Button className="small-padding" onClick={e => this.onButtonClick(e)} variant="primary">Register</Button>
-          <Button className="small-padding" variant="outline-primary">Log In</Button>
+          <Button className="small-padding" onClick={() => this.onButtonClick(true)} variant="primary">Register</Button>
+          <Button className="small-padding" onClick={() => this.onButtonClick(false)} variant="outline-primary">Log In</Button>
         </div>;
     }   
 
