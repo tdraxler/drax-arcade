@@ -6,21 +6,17 @@ import MainPage from './components/MainPage';
 import { Link, Route, Switch, BrowserRouter } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-
-
-const reducer = (state, action) => {
-  console.log('reducer of ', state, action);
-  return state;
-};
-
-const store = createStore(reducer);
+import { authReducer } from './reducers/authentication';
 
 console.log("The app is running...");
 
+const store = createStore(authReducer);
+
 const AppGateway = () => {
   return (
-    <div>
+    <Provider store={store}>
       <BrowserRouter>
         <Header />
         <MainPage />
@@ -29,7 +25,7 @@ const AppGateway = () => {
 
         </Switch>
       </BrowserRouter>
-    </div>
+    </Provider>
   );
 };
 

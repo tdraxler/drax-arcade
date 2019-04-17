@@ -1,36 +1,14 @@
-export const logIn = (
-  {
-    username='',
-    password='',
-  }
-) => ({
-  type: 'LOGIN',
-  userInfo: {
-    username,
-    password
-  }
-});
+export const LOGIN = "LOGIN";
+export const LOGOUT = "LOGOUT";
 
-export const logOut = (
-  {
-    username=''
-  }
-) => ({
-  type: 'LOGOUT',
-  userInfo: {
-    username
-  }
-});
+export const login = () => {
+  return {
+    type: LOGIN
+  };
+};
 
-export const register = (
-  {
-    username='',
-    password='',
-  }
-) => ({
-  type: 'REGISTER',
-  userInfo: {
-    username,
-    password
-  }
-});
+export const logout = () => {
+  return {
+    type: LOGOUT
+  };
+};
