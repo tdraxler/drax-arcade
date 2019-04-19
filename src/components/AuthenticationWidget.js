@@ -3,13 +3,10 @@ import Form from 'react-bootstrap/Form';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import { connect } from 'react-redux';
-import { login } from '../actions/authentication';
 
 
 const mapStateToProps = (state) => {
-  return {
-    count: state.LoggedIn
-  }
+  return state;
 }
 
 const PasswordMatchMessage = (props) => {
@@ -45,7 +42,7 @@ export class AuthenticationWidget extends React.Component {
 
   handleTestClick() {
     console.log("Clicked?");
-    this.props.dispatch(login());
+    // this.props.dispatch(login());
   }
 
   handleInputChange(event) {
@@ -166,7 +163,7 @@ export class AuthenticationWidget extends React.Component {
   render() {
     return (
       <div>
-        <Button variant="primary" onClick={() => this.handleTestClick()}>Test Login</Button>
+        {/* <Button variant="primary" onClick={() => this.handleTestClick()}>Test Login</Button> */}
         {this.giveWidget()}
       </div>
     )

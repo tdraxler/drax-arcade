@@ -7,12 +7,16 @@ import { Link, Route, Switch, BrowserRouter } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import thunk from 'redux-thunk';
+import { createStore, applyMiddleware } from 'redux';
 import { authReducer } from './reducers/authentication';
 
 console.log("The app is running...");
 
-const store = createStore(authReducer);
+const store = createStore(
+  authReducer,
+  applyMiddleware(thunk)  
+);
 
 const AppGateway = () => {
   return (
