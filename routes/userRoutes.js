@@ -59,6 +59,7 @@ router.post('/login', (req, res) => {
     }
     else {
       req.session.user = user.dataValues;
+      console.log("Successful login of " + username);
       res.sendStatus(200);
     }
   }).catch(err => {
@@ -73,8 +74,10 @@ router.get('/checkAuth', checkAuth, (req, res) => {
 
 // GET: logout
 router.get('/logout', (req, res) => {
+  console.log("Log out request received.");
   if (isLoggedIn(req)) {
-    req.clearCookie('user_sid');
+    console.log("Clearing user info");
+    res.clearCookie('user_sid');
   }
   res.sendStatus(200);
 });

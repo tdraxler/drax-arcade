@@ -1,9 +1,11 @@
 export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
 
-export const login = () => {
+export const login = (username) => {
+  console.log("Sending this: " + username);
   return {
-    type: LOGIN
+    type: LOGIN,
+    username: username
   };
 };
 

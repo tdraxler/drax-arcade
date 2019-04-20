@@ -26,7 +26,7 @@
 //   });
 //
 
-export const login = (username, password) => new Promise ((resolve, reject) => {
+export const loginRequest = (username, password) => new Promise ((resolve, reject) => {
   fetch('/login', {
     method: 'POST',
     body: JSON.stringify({
@@ -50,4 +50,24 @@ export const login = (username, password) => new Promise ((resolve, reject) => {
   });
 });
 
-export default login;
+export const logoutRequest = () => new Promise((resolve, reject) => {
+  fetch('/logout', {
+    method: 'GET',
+  })
+  .then(res => {
+    if (res.status === 200) {
+      console.log("successful logout.");
+      resolve({success: true});
+    } else {
+      console.log("Didn't work");
+      console.log(res.error);
+      reject(res.error);
+    }
+  })
+  .catch(err => {
+    console.error(err);
+    reject(err);
+  });
+});
+
+export default {loginRequest, logoutRequest};

@@ -4,7 +4,8 @@ import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import { connect } from 'react-redux';
 import mapStateToProps from './mapStateToProps';
-import login from './Login';
+import { loginRequest } from './Login';
+import { login } from '../actions/authentication';
 
 const PasswordMatchMessage = (props) => {
   const { password, passwordB } = props;
@@ -30,6 +31,8 @@ export class AuthenticationWidget extends React.Component {
       newUser: true,
       loading: false
     };
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentWillMount() {
@@ -56,13 +59,14 @@ export class AuthenticationWidget extends React.Component {
     this.setState({
       loading: true
     }, () => {
-      login(input.username, input.password)
+      loginRequest(input.username, input.password)
       .then((result) => {
+        console.log("success:");
         console.log(result);
         this.setState({
           loading: false
         });
-        this.props.dispatch(login(input.username, input.password));
+        this.props.dispatch(login({ username: input.username}));
       })
       .catch(error => {
         console.log(error);
@@ -76,6 +80,12 @@ export class AuthenticationWidget extends React.Component {
     this.setState({
       newUser: !currentView
     });
+  }
+
+  drawLoading() {
+    <div className="reg-widget">
+      <h4>Loading...</h4>
+    </div>
   }
 
   drawLogin() {
@@ -170,7 +180,19 @@ export class AuthenticationWidget extends React.Component {
   }
 
   giveWidget() {
-    if (this.state.newUser) return this.drawRegister();
+    if (this.props.loggedIn) {
+      return (
+        <div>
+          <h4>Logged in</h4>
+        </div>
+      );
+    }
+    else if (this.state.loading) {
+      return this.drawLoading();
+    }
+    else if (this.state.newUser) {
+      return this.drawRegister();
+    }
     else return this.drawLogin();
 
   }
