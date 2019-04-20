@@ -3,11 +3,8 @@ import Form from 'react-bootstrap/Form';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import { connect } from 'react-redux';
-
-
-const mapStateToProps = (state) => {
-  return state;
-}
+import mapStateToProps from './mapStateToProps';
+import login from './Login';
 
 const PasswordMatchMessage = (props) => {
   const { password, passwordB } = props;
@@ -30,7 +27,8 @@ export class AuthenticationWidget extends React.Component {
       username: '',
       password: '',
       passwordB: '',
-      newUser: true
+      newUser: true,
+      loading: false
     };
   }
 
@@ -53,7 +51,24 @@ export class AuthenticationWidget extends React.Component {
   }
 
   handleSubmit(event) {
-
+    event.preventDefault();
+    var input = this.state;
+    this.setState({
+      loading: true
+    }, () => {
+      login(input.username, input.password)
+      .then((result) => {
+        console.log(result);
+        this.setState({
+          loading: false
+        });
+        this.props.dispatch(login(input.username, input.password));
+      })
+      .catch(error => {
+        console.log(error);
+        this.setState({ loading: false });
+      });
+    });
   }
 
   switchView() {

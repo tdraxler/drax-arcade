@@ -20,10 +20,10 @@ router.get('/testdb', (req, res) => {
 
 router.post('/createUser', (req, res) => {
   console.log(req.body);
-  const { username, password, passwordB } = req.body;
+  const { username } = req.body;
   //Check to make sure the password is in a valid format
 
-  if (password === passwordB && username.length <= 30) {
+  if (username.length <= 30) {
     //Need to check if the user exists already...
     User.create(req.body)
     .then(user => {
