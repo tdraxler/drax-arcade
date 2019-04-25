@@ -2,8 +2,9 @@ import React from 'react';
 import { Nav, Navbar } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import mapStateToProps from './mapStateToProps';
-import { logout } from '../actions/authentication';
-import { logoutRequest } from './Login';
+import { logout, login } from '../actions/authentication';
+import { logoutRequest, loginRequest } from './Login';
+import checkLoginStatus from './checkLoginStatus';
 
 class Header extends React.Component {
   constructor(props) {
@@ -13,6 +14,21 @@ class Header extends React.Component {
     }
 
     this.handleLogout = this.handleLogout.bind(this);
+  }
+
+  componentDidMount() {
+    // let userName = checkLoginStatus();
+    // console.log("We have this: " + userName);
+    // if (userName && userName != "") {
+    //   this.props.dispatch(login({ username: userName}));
+    // }
+    checkLoginStatus()
+    .then((result) => {
+      if (result && result != "") {
+        this.props.dispatch(login({ username: result}));
+      }
+    });
+
   }
 
   handleLogout() {

@@ -2,7 +2,6 @@ import React from 'react';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Button from 'react-bootstrap/Button';
 import AuthenticationWidget from './AuthenticationWidget';
-import checkLoginStatus from './checkLoginStatus';
 
 export class WelcomeBox extends React.Component {
   constructor(props) {
@@ -44,7 +43,7 @@ export class WelcomeBox extends React.Component {
             and show your high scores to the world.
           </p>
           <a href="/games">Click here to see what games we have!</a>
-          <Button onClick={() => checkLoginStatus()} variant="primary">test user status check</Button>
+          {/* <Button onClick={() => checkLoginStatus()} variant="primary">test user status check</Button> */}
           {regDisplay}
         </Jumbotron>
       </div>
