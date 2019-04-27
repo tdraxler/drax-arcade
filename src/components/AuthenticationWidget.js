@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import { connect } from 'react-redux';
 import mapStateToProps from './mapStateToProps';
 import { loginRequest } from './Login';
+import { regRequest } from './Register';
 import { login } from '../actions/authentication';
 
 const PasswordMatchMessage = (props) => {
@@ -12,11 +13,30 @@ const PasswordMatchMessage = (props) => {
   let visible = password != passwordB && passwordB.length > 0;
   return (
       visible ? 
-      <Alert variant='danger'>
+      <Alert variant='warning'>
         Passwords must match
       </Alert>
       :
       <div></div>
+  );
+};
+
+const ErrorMessage = (props) => {
+  let errorMessage;
+  switch(props.message) {
+    case 'alreadyExists':
+      errorMessage = "That username is already taken.";
+      break;
+    case 'incorrectCredentials':
+      errorMessage = "Incorrect username or password";
+      break;
+    default:
+      errorMessage = "Something went wrong!";
+  }
+  return (
+    <Alert variant='danger'>
+      {errorMessage}
+    </Alert>
   );
 }
 
@@ -28,11 +48,13 @@ export class AuthenticationWidget extends React.Component {
       username: '',
       password: '',
       passwordB: '',
+      errorMessage: '',
       newUser: true,
       loading: false
     };
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
+    this.handleRegister = this.handleRegister.bind(this);
   }
 
   componentWillMount() {
@@ -53,11 +75,12 @@ export class AuthenticationWidget extends React.Component {
     });
   }
 
-  handleSubmit(event) {
+  handleLogin(event) {
     event.preventDefault();
     var input = this.state;
     this.setState({
-      loading: true
+      loading: true,
+      errorMessage: ""
     }, () => {
       loginRequest(input.username, input.password)
       .then((result) => {
@@ -70,7 +93,45 @@ export class AuthenticationWidget extends React.Component {
       })
       .catch(error => {
         console.log(error);
-        this.setState({ loading: false });
+        this.setState({ 
+          loading: false,
+          errorMessage: "incorrectCredentials"
+        });
+      });
+    });
+  }
+
+  handleRegister(event) {
+    event.preventDefault();
+    var input = this.state;
+    this.setState({
+      loading: true,
+      errorMessage: ""
+    }, () => {
+      regRequest(input.username, input.password, input.passwordB)
+      .then((result) => {
+        console.log("Here: " + result.success);
+        if (result.success) {
+          console.log("success:");
+          console.log(result);
+          this.setState({
+            loading: false
+          });
+          this.props.dispatch(login({ username: input.username}));
+        }
+        else {
+          this.setState({ 
+            loading: false,
+            errorMessage: "alreadyExists"
+          });          
+        }
+      })
+      .catch(error => {
+        console.log(error);
+        this.setState({ 
+          loading: false,
+          errorMessage: "default"
+        });
       });
     });
   }
@@ -78,7 +139,9 @@ export class AuthenticationWidget extends React.Component {
   switchView() {
     let currentView = this.state.newUser;
     this.setState({
-      newUser: !currentView
+      newUser: !currentView,
+      passwordB: '',
+      errorMessage: '',
     });
   }
 
@@ -93,7 +156,7 @@ export class AuthenticationWidget extends React.Component {
       <div className="reg-widget">
         <h4>Log in by entering your credentials below.</h4>
         <Form
-          onSubmit={e => this.handleSubmit(e)}
+          onSubmit={e => this.handleLogin(e)}
         >
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Username</Form.Label>
@@ -115,6 +178,7 @@ export class AuthenticationWidget extends React.Component {
               onChange={this.handleInputChange}
             />
           </Form.Group>
+          {this.state.errorMessage != "" && <ErrorMessage message={this.state.errorMessage}/>}
           <Button variant="primary" type="submit">
             Submit
           </Button>
@@ -129,11 +193,12 @@ export class AuthenticationWidget extends React.Component {
   }
 
   drawRegister() {
+    let passwordsMatch = (this.state.password === this.state.passwordB);
     return (
       <div className="reg-widget">
         <h4>Register by entering your information below.</h4>
         <Form
-          onSubmit={e => this.handleSubmit(e)}
+          onSubmit={e => this.handleRegister(e)}
         >
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Username</Form.Label>
@@ -166,7 +231,11 @@ export class AuthenticationWidget extends React.Component {
             />
           </Form.Group>
           <PasswordMatchMessage password={this.state.password} passwordB={this.state.passwordB}/>
-          <Button variant="primary" type="submit">
+
+          {this.state.errorMessage != "" && <ErrorMessage message={this.state.errorMessage}/>}
+          <Button variant="primary" type="submit" disabled=
+            {!passwordsMatch || this.state.password.length === 0 || this.state.username.length === 0}
+          >
             Submit
           </Button>
         </Form>

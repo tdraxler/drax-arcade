@@ -43,7 +43,6 @@ export class WelcomeBox extends React.Component {
             and show your high scores to the world.
           </p>
           <a href="/games">Click here to see what games we have!</a>
-          {/* <Button onClick={() => checkLoginStatus()} variant="primary">test user status check</Button> */}
           {regDisplay}
         </Jumbotron>
       </div>

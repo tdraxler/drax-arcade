@@ -11,13 +11,6 @@ router.use(bodyParser.urlencoded({ extended: true }));
 
 
 
-
-
-router.get('/testdb', (req, res) => {
-  User.findAll()
-    .then(users => res.status(200).json(users));
-});
-
 router.post('/createUser', (req, res) => {
   console.log(req.body);
   const { username } = req.body;
@@ -31,7 +24,7 @@ router.post('/createUser', (req, res) => {
       res.sendStatus(200);
     }).catch(err => {
       console.log(err);
-      res.sendStatus(403);
+      res.sendStatus(400);
     });
   }
   else {
