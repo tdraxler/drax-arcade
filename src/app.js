@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import 'normalize-css/normalize.css';
 import './styles/styles.scss';
 import MainPage from './components/MainPage';
+import GamesIndex from './components/GamesIndex';
 import { Link, Route, Switch, BrowserRouter } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -21,11 +22,11 @@ const AppGateway = () => {
     <Provider store={store}>
       <BrowserRouter>
         <Header />
-        <MainPage />
-        <Footer />
         <Switch>
-
+          <Route path="/" exact component={MainPage}/>
+          <Route path="/gamesTest" exact component={GamesIndex}/>
         </Switch>
+        <Footer />
       </BrowserRouter>
     </Provider>
   );

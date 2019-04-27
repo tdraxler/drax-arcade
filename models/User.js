@@ -15,8 +15,13 @@ const User = sequelize.define('users', {
         user_id: {
             type: Sequelize.INTEGER,
             primaryKey: true,
-            autoIncrement: true
+            autoIncrement: true,
         },
+        admin: {
+            type: Sequelize.BOOLEAN,
+            defaultValue: false,
+            allowNull: false
+        }
     }, {
         hooks: {
           beforeCreate: (user) => {

@@ -2,6 +2,7 @@ import React from 'react';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Button from 'react-bootstrap/Button';
 import AuthenticationWidget from './AuthenticationWidget';
+import { Link } from 'react-router-dom';
 
 export class WelcomeBox extends React.Component {
   constructor(props) {
@@ -42,7 +43,7 @@ export class WelcomeBox extends React.Component {
             Come play some games in your browser. Register to rate games, post comments, 
             and show your high scores to the world.
           </p>
-          <a href="/games">Click here to see what games we have!</a>
+          <Link to="/gamesTest">Click here to see what games we have!</Link>
           {regDisplay}
         </Jumbotron>
       </div>
