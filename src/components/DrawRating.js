@@ -16,9 +16,7 @@ export const DrawRating = (props) => {
   }
 
   return (
-    <div className="star-display">
       <p className="star-display">{starString}</p>
-    </div>
   );
 };
 

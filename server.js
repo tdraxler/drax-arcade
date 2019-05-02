@@ -38,6 +38,8 @@ app.use((req, res, next) => {
 });
 
 const userRoutes = require('./routes/userRoutes');
+const gameRoutes = require('./routes/gameRoutes');
+
 
 app.get('/', (req, res) => {
     res.sendFile(HOME_FILE);

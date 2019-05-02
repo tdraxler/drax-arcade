@@ -1,33 +1,55 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
-import Image from 'react-bootstrap/Image';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import DrawRating from './DrawRating';
+import GamesListItem from './GamesListItem';
 
 export class GamesList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      games: []
+      games: [
+        {
+          title: "Tetris",
+          rating: 8,
+          description: "This is a game description. It's not complete.",
+          id: 23
+        },
+        {
+          title: "Super Mario Bros",
+          rating: 9,
+          description: "This is a game description. It's not complete.",
+          id: 1
+        },
+        {
+          title: "Card Matching",
+          rating: 10,
+          description: "This is a game description. It's not complete.",
+          id: 12
+        },
+        {
+          title: "Watch Paint Dry",
+          rating: 3,
+          description: "This is a game description. It's not complete.",
+          id: 64
+        },
+        {
+          title: "Do homework",
+          rating: 1,
+          description: "This is a game description. It's not complete.",
+          id: 19
+        }
+      ]
     };
   }
   render() {
+    const games = this.state.games;
+    console.log(games.length);
+    let gamesList = games.map((game) => 
+      <GamesListItem game={game} key={game.id} />
+    );
+    console.log(gamesList);
+
     return (
       <div>
-        <Row className="game-card">
-          <Col xs={2}>
-            <Image src="test-files/game_thumb.png" rounded fluid/>
-            <DrawRating starRating={7} />
-          </Col>
-          <Col>
-            <h3>Tetris</h3>
-            <p>The classic puzzle game of dropping shapes. Test your abilities now!</p>
-          </Col>
-          <Col>
-            <Button>Play!</Button>
-          </Col>
-        </Row>
+        {gamesList}
       </div>
     );
   }
