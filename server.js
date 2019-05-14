@@ -8,7 +8,6 @@ const sessionSecret = require('./sessioninfo');
 const app = express(),
 	PUBLIC_DIR = path.join(__dirname, "/public"),
     HOME_FILE = path.join(PUBLIC_DIR, '/index.html'),
-    GAME_INDEX = path.join(PUBLIC_DIR, '/gameindex.html'),
     GAME_VIEW = path.join(PUBLIC_DIR, '/gameview.html')
 
 
@@ -41,18 +40,15 @@ const userRoutes = require('./routes/userRoutes');
 const gameRoutes = require('./routes/gameRoutes');
 
 
-app.get('/', (req, res) => {
-    res.sendFile(HOME_FILE);
-});
 
-app.get('/games', (req, res) => {
-    console.log("Request for games");
-    res.sendFile(GAME_INDEX);
-});
 
 app.get('/gameview', (req, res) => {
     console.log("Request for game view");
     res.sendFile(GAME_VIEW);
+});
+
+app.get('/*', (req, res) => {
+    res.sendFile(HOME_FILE);
 });
 
 app.use(userRoutes);
