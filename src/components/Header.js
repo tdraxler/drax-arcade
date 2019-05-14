@@ -1,5 +1,6 @@
 import React from 'react';
 import { Nav, Navbar } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import mapStateToProps from './mapStateToProps';
 import { logout, login } from '../actions/authentication';
@@ -70,7 +71,10 @@ class Header extends React.Component {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="/games">Games</Nav.Link>
+            {/* <Nav.Link href="/games">Games</Nav.Link> */}
+            <Nav.Item>
+              <Link to="/gamesTest">Games</Link>
+            </Nav.Item>
             <Nav.Link href="/">status: {this.props.loggedIn && "logged in"}</Nav.Link>
           </Nav>
           <Nav>

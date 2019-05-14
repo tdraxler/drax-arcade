@@ -4,6 +4,8 @@ import Image from 'react-bootstrap/Image';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import DrawRating from './DrawRating';
+import { Link } from 'react-router-dom';
+
 
 export const GamesListItem = (props) => {
   const game = props.game;
@@ -19,7 +21,9 @@ export const GamesListItem = (props) => {
           <p>{game.description}</p>
         </Col>
         <Col xs={2}>
-          <Button>Play!</Button>
+          <Link to="/gameView">
+            <Button>Play!</Button>
+          </Link>
         </Col>
       </Row>
     </React.Fragment>
