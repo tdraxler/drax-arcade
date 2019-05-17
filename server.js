@@ -42,10 +42,10 @@ const gameRoutes = require('./routes/gameRoutes');
 
 
 
-app.get('/gameview', (req, res) => {
-    console.log("Request for game view");
-    res.sendFile(GAME_VIEW);
-});
+// app.get('/gameview', (req, res) => {
+//     console.log("Request for game view");
+//     res.sendFile(GAME_VIEW);
+// });
 
 app.get('/*', (req, res) => {
     res.sendFile(HOME_FILE);

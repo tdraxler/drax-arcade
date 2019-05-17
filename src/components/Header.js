@@ -67,14 +67,16 @@ class Header extends React.Component {
 
     return (
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-        <Navbar.Brand href="/">Drax Arcade</Navbar.Brand>
+        <Link to="/">
+          <Navbar.Brand href="/">Drax Arcade</Navbar.Brand>
+        </Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
             {/* <Nav.Link href="/games">Games</Nav.Link> */}
-            <Nav.Item>
-              <Link to="/gamesTest">Games</Link>
-            </Nav.Item>
+            <Link to="/gamesTest">
+              <Nav.Link href="/gamesTest">Games</Nav.Link>
+            </Link>
             <Nav.Link href="/">status: {this.props.loggedIn && "logged in"}</Nav.Link>
           </Nav>
           <Nav>
