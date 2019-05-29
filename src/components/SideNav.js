@@ -1,28 +1,16 @@
 import React from 'react';
 import Nav from 'react-bootstrap/Nav';
-import { Link } from 'react-router-dom';
+import { LinkContainer } from 'react-router-bootstrap';
 
 
 export const SideNav = () => {
   return (
     <div className="sidenav">
-    {/* <Nav defaultActiveKey="/home" className="flex-column">
-      <Nav.Link href="#">Home</Nav.Link>
-      <Nav.Link href="#">Games</Nav.Link>
-      <Nav.Link href="#">High Scores Log</Nav.Link>
-    </Nav> */}
-    <ul>
-      <li>
-        <Link to="/">Home</Link>
-      </li>
-      <li>
-        <Link to="/gamesTest">Games</Link>
-      </li>
-      <li>
-        <Link to="/">High Scores Log</Link>
-      </li>
-    </ul>
-
+    <Nav defaultActiveKey="/home" className="flex-column">
+      <LinkContainer to="/"><Nav.Link href="#">Home</Nav.Link></LinkContainer>
+      <LinkContainer to="/gamesTest"><Nav.Link href="#">Games</Nav.Link></LinkContainer>
+      <LinkContainer to="/"><Nav.Link href="#">High Scores Log</Nav.Link></LinkContainer>
+    </Nav>
   </div>
   );
 };
