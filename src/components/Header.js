@@ -8,6 +8,8 @@ import { logout, login } from '../actions/authentication';
 import { logoutRequest, loginRequest } from './Login';
 import checkLoginStatus from './checkLoginStatus';
 
+import TinyLogin from './forms/TinyLogin';
+
 class Header extends React.Component {
   constructor(props) {
     super(props);
@@ -60,7 +62,7 @@ class Header extends React.Component {
     if (this.props.loggedIn) {
       userStatus =
         <Nav>
-          <NavDropdown title={this.props.username} id="collapsible-nav-dropdown">
+          <NavDropdown alignRight title={this.props.username} id="collapsible-nav-dropdown">
             <NavDropdown.Item>Profile</NavDropdown.Item>
             <NavDropdown.Item>Settings</NavDropdown.Item>
             <NavDropdown.Divider />
@@ -68,7 +70,10 @@ class Header extends React.Component {
           </NavDropdown>
         </Nav>;
     } else {
-      userStatus = <Nav><Nav.Link href="/">Register or Log In</Nav.Link></Nav>;
+      userStatus = 
+        <NavDropdown alignRight title="Log In" id="collapsible-nav-dropdown">
+          <TinyLogin />
+        </NavDropdown>;
     }
 
     return (
