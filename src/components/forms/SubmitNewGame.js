@@ -34,7 +34,7 @@ export class NewGame extends React.Component {
   render() {
     return (
     <div className="arcade-container">
-      <h2>Here you'll be able to enter details for a new game if you have admin priviledges.</h2>
+      <h2>Enter info about a new game here</h2>
       <Form
         onSubmit={e => this.handleSubmit(e)}
       >
@@ -71,7 +71,7 @@ export class NewGame extends React.Component {
         <Form.Group controlId="formBasicText">
           <Form.Label>Preview Image</Form.Label>
           <Form.Control 
-            name="gamePath"
+            name="gameImgURL"
             type="text" placeholder="Enter the preview image URL" 
             value={this.state.gameImgURL}
             onChange={this.handleInputChange}

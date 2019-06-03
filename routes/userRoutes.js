@@ -77,6 +77,7 @@ router.get('/logout', (req, res) => {
 
 // GET: userinfo
 router.get('/userInfo', (req, res) => {
+  console.log("Query for user status recieved.");
   if (!isLoggedIn(req)) {
     res.status(200).send({username: ''});
   } else {

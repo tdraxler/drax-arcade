@@ -47,11 +47,11 @@ const gameRoutes = require('./routes/gameRoutes');
 //     res.sendFile(GAME_VIEW);
 // });
 
+
+app.use(userRoutes);
 app.get('/*', (req, res) => {
     res.sendFile(HOME_FILE);
 });
-
-app.use(userRoutes);
 
 const PORT = process.env.PORT || 3000;
 

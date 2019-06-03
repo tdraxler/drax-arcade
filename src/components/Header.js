@@ -1,5 +1,5 @@
 import React from 'react';
-import { Nav, Navbar } from 'react-bootstrap';
+import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 import { connect } from 'react-redux';
@@ -60,7 +60,12 @@ class Header extends React.Component {
     if (this.props.loggedIn) {
       userStatus =
         <Nav>
-          <Nav.Link href="#" onClick={this.handleLogout}>Log Out</Nav.Link>
+          <NavDropdown title={this.props.username} id="collapsible-nav-dropdown">
+            <NavDropdown.Item>Profile</NavDropdown.Item>
+            <NavDropdown.Item>Settings</NavDropdown.Item>
+            <NavDropdown.Divider />
+            <NavDropdown.Item onClick={this.handleLogout}>Log out</NavDropdown.Item>
+          </NavDropdown>
         </Nav>;
     } else {
       userStatus = <Nav><Nav.Link href="/">Register or Log In</Nav.Link></Nav>;

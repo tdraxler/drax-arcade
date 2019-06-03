@@ -27,6 +27,7 @@ export const checkLoginStatus = () => new Promise ((resolve) => {
       },
       (error) => {
         console.log("Couldn't get user info!");
+        console.log(error);
         resolve('');
       }
     );
