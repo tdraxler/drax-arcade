@@ -38,6 +38,7 @@ I learned how to use Bootstrap with React using react-bootstrap.
 I learned how to make a single-page app.
 
 ### What I would do if I were to start again from the beginning
+I think this project is rather ambitious, so working on more projects leading up to this one could have been beneficial. For example, I could have done a project focused on a single page app, then another one that loads scripts into a 'viewer' (like what's involved for loading a game for the user).
 
 Credit:
 

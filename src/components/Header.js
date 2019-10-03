@@ -79,7 +79,7 @@ class Header extends React.Component {
     return (
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <LinkContainer to="/">
-          <Navbar.Brand href="/">Drax Arcade</Navbar.Brand>
+          <Navbar.Brand href="/" id="main-title">Drax Arcade</Navbar.Brand>
         </LinkContainer>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">

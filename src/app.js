@@ -5,6 +5,7 @@ import './styles/styles.scss';
 import MainPage from './components/MainPage';
 import GamesIndex from './components/GamesIndex';
 import GameView from './components/gameviewer/GameView.js';
+import RegisterWindow from './components/RegisterWindow.js';
 import { Link, Route, Switch, BrowserRouter } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -29,6 +30,7 @@ const AppGateway = () => {
           <Route path="/gamesTest" exact component={GamesIndex}/>
           <Route path="/gameView" exact component={GameView}/>
           <Route path="/admin" exact component={AdminView}/>
+          <Route path="/register" exact component={RegisterWindow}/>
         </Switch>
         <Footer />
       </BrowserRouter>
